@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,11 @@ namespace Derivee.TickRecorder.Console
             _client = new RestClient(_url);
         }
 
-        public void GetPrice(string pair)
+        public MarketData GetPrice(string pair)
         {
-
             var request = new RestRequest($"/api/v2/ticker/{pair}", Method.GET);
-
             IRestResponse response = _client.Execute(request);
-            System.Console.WriteLine("test");
-         //   return JsonConvert.DeserializeObject<TickerResponse>(response.Content);
+            return JsonConvert.DeserializeObject<MarketData>(response.Content);
         }
     }
 }
