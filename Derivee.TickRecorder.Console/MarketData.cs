@@ -8,14 +8,14 @@ namespace Derivee.TickRecorder.Console
 {
     class MarketData
     {
-        public string high;
-        public string last;
-        public string timestamp;
-        public string bid;
-        public string vwap;
-        public string volume;
-        public string low;
-        public string ask;
-        public string open;
+        public double high;
+        public double last;
+        public int timestamp;
+        public double bid;
+        public double vwap;
+        public double volume;
+        public double low;
+        public double ask;
+        public double open;
     }
 }

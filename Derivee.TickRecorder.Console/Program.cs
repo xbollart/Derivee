@@ -12,22 +12,35 @@ namespace Derivee.TickRecorder.Console
         static void Main(string[] args)
         {
             var bitStamp = new BitStampConnector();
-
+            // 12 pairs
+            string[] pairs = { "btcusd", "btceur", "eurusd","xrpusd","xrpeur","xrpbtc","ltcusd","ltceur","ltcbtc","ethusd","etheur","ethbtc" };
             while (true)
             {
-                string ccy = "btcusd";
-                Thread.Sleep(2000);
-                var mktData = bitStamp.GetPrice(ccy);
+                foreach (var pair in pairs)
+                {
+                    var mktData = bitStamp.GetPrice(pair);
 
-                System.Console.WriteLine($"{ccy} high: {mktData.high}");
-                System.Console.WriteLine($"{ccy} last: {mktData.last}");
-                System.Console.WriteLine($"{ccy} timestamp: {mktData.timestamp}");
-                System.Console.WriteLine($"{ccy} bid: {mktData.bid}");
-                System.Console.WriteLine($"{ccy} vwap: {mktData.vwap}");
-                System.Console.WriteLine($"{ccy} volume: {mktData.volume}");
-                System.Console.WriteLine($"{ccy} low: {mktData.low}");
-                System.Console.WriteLine($"{ccy} ask: {mktData.ask}");
-                System.Console.WriteLine($"{ccy} open: {mktData.open}");
+                    if (mktData == null)
+                    {
+                        System.Console.WriteLine($"Issue while Loading {pair}");
+                    }
+                    else
+                    {
+                        System.Console.WriteLine(pair);
+                        System.Console.WriteLine($"high: {mktData.high}");
+                        System.Console.WriteLine($"last: {mktData.last}");
+                        System.Console.WriteLine($"timestamp: {mktData.timestamp}");
+                        System.Console.WriteLine($"bid: {mktData.bid}");
+                        System.Console.WriteLine($"vwap: {mktData.vwap}");
+                        System.Console.WriteLine($"volume: {mktData.volume}");
+                        System.Console.WriteLine($"low: {mktData.low}");
+                        System.Console.WriteLine($"ask: {mktData.ask}");
+                        System.Console.WriteLine($"open: {mktData.open}");
+                        System.Console.WriteLine("");
+                    }
+
+                    Thread.Sleep(2000);
+                }
             }
         }
     }
