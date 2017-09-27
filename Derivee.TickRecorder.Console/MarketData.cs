@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Derivee.TickRecorder
+namespace Derivee.TickRecorder.Console
 {
-    class Program
+    class MarketData
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
