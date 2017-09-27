@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,11 +11,18 @@ namespace Derivee.TickRecorder.Console
 {
     class Program
     {
-        static string _recordingDirectoryPath = "PriceRecording";
-        static string _sep = ",";
+        private static readonly string _recordingDirectoryPath = ConfigurationManager.AppSettings["OutputPath"];
+        private static readonly string _sep = ConfigurationManager.AppSettings["Separator"];
+        private static readonly int _period = int.Parse(ConfigurationManager.AppSettings["RefreshPeriod"]);
 
         static void Main(string[] args)
         {
+            if (_period < 1000)
+            {
+                System.Console.WriteLine("Please restart app with a Period at least equal to: 1000 (ms)");
+                return;
+            }
+
             var bitStamp = new BitStampConnector();
             // 12 pairs
             string[] pairs = { "btcusd", "btceur", "eurusd","xrpusd","xrpeur","xrpbtc","ltcusd","ltceur","ltcbtc","ethusd","etheur","ethbtc" };
@@ -26,7 +34,7 @@ namespace Derivee.TickRecorder.Console
 
                     DisplayMarketData(mktData, pair);
                     WriteToCsv(mktData, pair);
-                    Thread.Sleep(2000);
+                    Thread.Sleep(_period);
                 }
             }
         }
