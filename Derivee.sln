@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Derivee.TickRecorder", "Derivee.TickRecorder\Derivee.TickRecorder.csproj", "{BF774227-80CF-4DB9-B5B9-12F137E70235}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF774227-80CF-4DB9-B5B9-12F137E70235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF774227-80CF-4DB9-B5B9-12F137E70235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF774227-80CF-4DB9-B5B9-12F137E70235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF774227-80CF-4DB9-B5B9-12F137E70235}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6A3662C-4872-427C-B573-442CE63B6865}
+	EndGlobalSection
+EndGlobal
