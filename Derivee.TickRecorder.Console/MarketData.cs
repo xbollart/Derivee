@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Derivee.TickRecorder.Console
 {
-    class MarketData
+    public class MarketData
     {
         public double high;
         public double last;

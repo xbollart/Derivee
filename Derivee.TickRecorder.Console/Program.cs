@@ -25,7 +25,6 @@ namespace Derivee.TickRecorder.Console
 
             var bitStamp = new BitStampConnector();
             var db = new DataBaseConnector();
-            db.CreateDb();
             // 12 pairs
             string[] pairs = { "btcusd", "btceur", "eurusd","xrpusd","xrpeur","xrpbtc","ltcusd","ltceur","ltcbtc","ethusd","etheur","ethbtc" };
             while (true)
@@ -34,33 +33,34 @@ namespace Derivee.TickRecorder.Console
                 {
                     var mktData = bitStamp.GetPrice(pair);
 
-                    DisplayMarketData(mktData, pair);
-                    WriteToCsv(mktData, pair);
-                    Thread.Sleep(_period);
+                    if (mktData == null)
+                    {
+                        System.Console.WriteLine($"Issue while Loading {pair}");
+                    }
+                    else
+                    {
+                        DisplayMarketData(mktData, pair);
+                        WriteToCsv(mktData, pair);
+                        db.InsertInto(mktData, pair);
+                        Thread.Sleep(_period);
+                    }
                 }
             }
         }
 
         private static void DisplayMarketData(MarketData mktData, string pair)
         {
-            if (mktData == null)
-            {
-                System.Console.WriteLine($"Issue while Loading {pair}");
-            }
-            else
-            {
-                System.Console.WriteLine(pair);
-                System.Console.WriteLine($"high: {mktData.high}");
-                System.Console.WriteLine($"last: {mktData.last}");
-                System.Console.WriteLine($"timestamp: {mktData.timestamp}");
-                System.Console.WriteLine($"bid: {mktData.bid}");
-                System.Console.WriteLine($"vwap: {mktData.vwap}");
-                System.Console.WriteLine($"volume: {mktData.volume}");
-                System.Console.WriteLine($"low: {mktData.low}");
-                System.Console.WriteLine($"ask: {mktData.ask}");
-                System.Console.WriteLine($"open: {mktData.open}");
-                System.Console.WriteLine("");
-            }
+            System.Console.WriteLine(pair);
+            System.Console.WriteLine($"high: {mktData.high}");
+            System.Console.WriteLine($"last: {mktData.last}");
+            System.Console.WriteLine($"timestamp: {mktData.timestamp}");
+            System.Console.WriteLine($"bid: {mktData.bid}");
+            System.Console.WriteLine($"vwap: {mktData.vwap}");
+            System.Console.WriteLine($"volume: {mktData.volume}");
+            System.Console.WriteLine($"low: {mktData.low}");
+            System.Console.WriteLine($"ask: {mktData.ask}");
+            System.Console.WriteLine($"open: {mktData.open}");
+            System.Console.WriteLine("");
         }
 
         private static void WriteToCsv(MarketData mktData, string pair)
