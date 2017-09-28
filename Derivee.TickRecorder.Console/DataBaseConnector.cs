@@ -49,6 +49,7 @@ namespace Derivee.TickRecorder.Console
             }
             catch(Exception ex)
             {
+                System.Console.WriteLine($"issue on db insert ex:{ex}");
                 trans.Rollback();
             }
             finally
