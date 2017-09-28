@@ -24,6 +24,8 @@ namespace Derivee.TickRecorder.Console
             }
 
             var bitStamp = new BitStampConnector();
+            var db = new DataBaseConnector();
+            db.CreateDb();
             // 12 pairs
             string[] pairs = { "btcusd", "btceur", "eurusd","xrpusd","xrpeur","xrpbtc","ltcusd","ltceur","ltcbtc","ethusd","etheur","ethbtc" };
             while (true)
